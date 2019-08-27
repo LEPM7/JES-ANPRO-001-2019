@@ -1,0 +1,14 @@
+version: '3.3'
+services:
+  api:
+    container_name: mp-api
+    image: api:latest
+    ports:
+      - "4567:4567"
+    volumes:
+      - ./bin/:/opt/bin/
+      - ./api/:/opt/api/
+    environment:
+      - "API_DIR=/opt/api/"
+    working_dir: /opt/api/
+    command: bash -c "/bin/bash /opt/bin/api.sh"
