@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
 
 // TODO: usar un ORM real
 public class FakeORM {
@@ -43,7 +45,7 @@ public class FakeORM {
   public boolean insert(String nombre, String descripcion, String telefono, String direccion, Double latitud,
       Double longitud) throws SQLException {
     boolean result;
-    CallableStatement pstmt = this.getConnection().prepareCall("{ call dbo.InsertarFiscalia(?,?,?,?,?,?)}");
+    CallableStatement pstmt = this.getConnection().prepareCall("{ call dbo.FiscaliaInsertar(?,?,?,?,?,?)}");
     pstmt.setString(1, nombre);
     pstmt.setString(2, descripcion);
     pstmt.setString(3, telefono);
@@ -53,4 +55,25 @@ public class FakeORM {
     result = pstmt.execute();
     return result;
   }
+
+  public boolean obtenerFiscaliasActivas(String nombre, String descripcion, String telefono, String direccion,
+    Double latitud, Double longitud, Boolean activa) throws SQLException {
+    boolean result;
+    CallableStatement pstmt = this.getConnection().prepareCall("{ call dbo.FiscaliaObtenerActivas()}");
+    pstmt.execute();
+    ResultSet rs = pstmt.getResultSet();
+    Map posts = new HashMap<>();
+    if (rs != null) {
+      while (rs.next()) {
+
+        System.out.println("ID: " + rs.getInt("id"));
+        System.out.println("Nombre: " + rs.getString("nombre"));
+        System.out.println("Descripcion:" + rs.getString("descripcion"));
+        System.out.println("Fecha Creacion:" + rs.getDate("fecha_creacion") + " " + rs.getTime("fecha_creacion"));
+      }
+    }
+
+    return result;
+  }
+
 }

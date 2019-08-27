@@ -19,20 +19,16 @@ CREATE TABLE MOVIMIENTOS
     direccion           varchar(255) not null,
     latitud             DECIMAL(9, 6),
     longitud            DECIMAL(9, 6),
-    activa              bit          not null
+    activa              bit          not null,
+    fiscaliaId int FOREIGN KEY REFERENCES FISCALIA(id)
 );
 GO
 
-CREATE PROCEDURE FiscaliaObtener
-AS
-SELECT *
-FROM FISCALIA
-         INNER JOIN MOVIMIENTOS M on FISCALIA.fecha_creacion = M.fecha_creacion
-WHERE M.activa = 1
-GO
+--- Store Procedures
 
+--- Insertar
 
-CREATE PROCEDURE InsertarFiscalia @Nombre varchar(150),
+CREATE PROCEDURE FiscaliaInsertar @Nombre varchar(150),
                                   @Descripcion varchar(255),
                                   @Telefono varchar(50),
                                   @Direccion varchar(255),
@@ -40,18 +36,22 @@ CREATE PROCEDURE InsertarFiscalia @Nombre varchar(150),
                                   @Longitud DECIMAL(9, 6)
 AS
 BEGIN
-    DECLARE @id as int;
     SET NOCOUNT ON
     INSERT INTO dbo.FISCALIA(nombre, descripcion)
     values (@Nombre, @Descripcion);
-    INSERT INTO dbo.MOVIMIENTOS(telefono, direccion, latitud, longitud, activa)
-    values (@Telefono, @Direccion, @Latitud, @Longitud, 1);
-    SET @id=SCOPE_IDENTITY()
-    RETURN  @id
+    INSERT INTO dbo.MOVIMIENTOS(telefono, direccion, latitud, longitud, activa, fiscaliaId)
+    values (@Telefono, @Direccion, @Latitud, @Longitud, 1, (select id from FISCALIA where FISCALIA.nombre = @Nombre));
 END
 GO
 
 
-
+--- Obtener
+CREATE PROCEDURE FiscaliaObtenerActivas
+AS
+SELECT FISCALIA.nombre, FISCALIA.descripcion, M.*
+FROM FISCALIA
+         INNER JOIN MOVIMIENTOS M on FISCALIA.id = M.fiscaliaId
+WHERE M.activa = 1;
+go
 
 

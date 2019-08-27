@@ -3,24 +3,13 @@ package api;
 import static spark.Spark.get;
 import static spark.Spark.post;
 
-import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import lombok.Data;
-import spark.Request;
-import spark.Response;
-import spark.Route;
 
 import java.io.IOException;
 import java.io.StringWriter;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-
 public class API {
     
     private static final int HTTP_BAD_REQUEST = 400;
