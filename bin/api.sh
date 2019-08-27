@@ -2,6 +2,8 @@
 
 cd ${API_DIR}
 
+mvn install:install-file -Dfile=/opt/bin/sqljdbc4-2.0.jar -DgroupId=com.microsoft.sqlserver -DartifactId=sqljdbc4 -Dversion=4.0 -Dpackaging=jar
+
 mvn dependency:resolve
 mvn verify
 

@@ -13,4 +13,4 @@ transcurso del tiempo ya que cambien de ubicación constantemente.
 - `docker-compose up`
 - En otra terminal ejecutar 
 `docker exec -ti sql-server-db "bash"` 
-    - dentro del contenedor ejecutar `bash -c "/bin/bash sql.sh"`
+    - dentro del contenedor ejecutar `bash -c "/bin/bash /opt/bin/sql.sh"`
