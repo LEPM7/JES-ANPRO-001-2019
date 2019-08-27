@@ -42,19 +42,15 @@ public class FakeORM {
 
   public boolean insert(String nombre, String descripcion, String telefono, String direccion, Double latitud,
       Double longitud) throws SQLException {
-        boolean result = false;
-    try (
-      CallableStatement pstmt = this.getConnection()
-        .prepareCall("{ call dbo.InsertarFiscalia(?,?,?,?,?,?)}");) {
-
-      pstmt.setString(1, nombre);
-      pstmt.setString(2, descripcion);
-      pstmt.setString(3, telefono);
-      pstmt.setString(4, direccion);
-      pstmt.setDouble(5, latitud);
-      pstmt.setDouble(6, longitud);
-      result =pstmt.execute();
-    }
+    boolean result;
+    CallableStatement pstmt = this.getConnection().prepareCall("{ call dbo.InsertarFiscalia(?,?,?,?,?,?)}");
+    pstmt.setString(1, nombre);
+    pstmt.setString(2, descripcion);
+    pstmt.setString(3, telefono);
+    pstmt.setString(4, direccion);
+    pstmt.setDouble(5, latitud);
+    pstmt.setDouble(6, longitud);
+    result = pstmt.execute();
     return result;
   }
 }
