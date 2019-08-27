@@ -21,11 +21,11 @@
         <artifactId>maven-jar-plugin</artifactId>
         <version>2.4</version>
         <configuration>
-          <finalName>sparkexample</finalName>
+          <finalName>api</finalName>
           <archive>
             <manifest>
               <addClasspath>true</addClasspath>
-              <mainClass>sparkexample.Hello</mainClass>
+              <mainClass>api.API</mainClass>
               <classpathPrefix>dependency-jars/</classpathPrefix>
             </manifest>
           </archive>
