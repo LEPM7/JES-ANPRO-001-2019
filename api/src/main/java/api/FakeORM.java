@@ -3,14 +3,11 @@ package api;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 // TODO: usar un ORM real
@@ -59,6 +56,8 @@ public class FakeORM {
     return result;
   }
 
+  // https://programmaticponderings.com/2012/08/24/calling-sql-server-stored-procedures-with-java-using-jdbc/
+  // http://sparkjava.com/tutorials/reducing-java-boilerplate
   public List obtenerFiscaliasActivas() throws SQLException {
     CallableStatement pstmt = this.getConnection().prepareCall("{ call dbo.FiscaliaObtenerActivas()}");
     pstmt.execute();
