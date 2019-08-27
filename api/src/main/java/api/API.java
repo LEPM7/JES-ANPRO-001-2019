@@ -10,6 +10,8 @@ import lombok.Data;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.sql.SQLException;
+import java.util.LinkedList;
+
 public class API {
     
     private static final int HTTP_BAD_REQUEST = 400;
@@ -38,14 +40,17 @@ public class API {
     }
 
     public static void main(String[] args) {
-        get("/", (req, res) -> {
-            
+        get("/fiscalias", (request, response) -> {
             try {
-           
-            }catch(Exception e){
+                response.status(200);
+                response.type("application/json");
+                return dataToJson(new FakeORM().obtenerFiscaliasActivas());
+            } catch (SQLException e) {
+                response.status(HTTP_BAD_REQUEST);
+                response.type("application/json");
                 e.printStackTrace();
+                return dataToJson(new LinkedList<>());
             }
-            return "hello from sparkjava.com";
         });
 
         //insertar nueva fiscalia

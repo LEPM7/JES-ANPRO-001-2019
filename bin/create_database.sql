@@ -54,4 +54,3 @@ FROM FISCALIA
 WHERE M.activa = 1;
 go
 
-

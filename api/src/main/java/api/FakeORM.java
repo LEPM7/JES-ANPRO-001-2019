@@ -9,6 +9,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 // TODO: usar un ORM real
 public class FakeORM {
@@ -56,24 +59,26 @@ public class FakeORM {
     return result;
   }
 
-  public boolean obtenerFiscaliasActivas(String nombre, String descripcion, String telefono, String direccion,
-    Double latitud, Double longitud, Boolean activa) throws SQLException {
-    boolean result;
+  public List obtenerFiscaliasActivas() throws SQLException {
     CallableStatement pstmt = this.getConnection().prepareCall("{ call dbo.FiscaliaObtenerActivas()}");
     pstmt.execute();
     ResultSet rs = pstmt.getResultSet();
-    Map posts = new HashMap<>();
+    Map<Integer,Fiscalia> fiscalias = new HashMap<Integer,Fiscalia>();
     if (rs != null) {
       while (rs.next()) {
-
-        System.out.println("ID: " + rs.getInt("id"));
-        System.out.println("Nombre: " + rs.getString("nombre"));
-        System.out.println("Descripcion:" + rs.getString("descripcion"));
-        System.out.println("Fecha Creacion:" + rs.getDate("fecha_creacion") + " " + rs.getTime("fecha_creacion"));
+        Fiscalia f = new Fiscalia(
+          rs.getInt("fiscaliaId"), 
+          rs.getString("nombre"), 
+          rs.getString("descripcion"), 
+          rs.getString("telefono"), 
+          rs.getString("direccion"), 
+          rs.getDouble("latitud"), 
+          rs.getDouble("longitud"), 
+          rs.getBoolean("activa"));
+          fiscalias.put(f.id, f);
       }
     }
-
-    return result;
+    return fiscalias.keySet().stream().sorted().map((id) -> fiscalias.get(id)).collect(Collectors.toList());
   }
 
 }
