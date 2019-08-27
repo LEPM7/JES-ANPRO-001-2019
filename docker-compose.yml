@@ -1,5 +1,6 @@
 version: '3.3'
 services:
+  # http://sparkjava.com/tutorials/docker
   api:
     container_name: mp-api
     image: api:latest
@@ -12,3 +13,18 @@ services:
       - "API_DIR=/opt/api/"
     working_dir: /opt/api/
     command: bash -c "/bin/bash /opt/bin/api.sh"
+
+  # https://www.kimsereylam.com/docker/2018/10/05/docker-compose-sqlserver.html
+  # https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-configure-docker?view=sql-server-2017
+  # https://docs.microsoft.com/en-us/sql/ssms/scripting/sqlcmd-run-transact-sql-script-files?view=sql-server-2017
+  sql-server-db:
+    container_name: sql-server-db
+    image: microsoft/mssql-server-linux:2017-latest
+    ports:
+      - "1433:1433"
+    environment:
+      SA_PASSWORD: "Qwerty1234"
+      ACCEPT_EULA: "Y"
+    volumes:
+      - ./bin/:/opt/bin/
+    # command: bash -c "/bin/bash /opt/bin/sql.sh"

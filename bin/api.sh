@@ -1,12 +1,10 @@
 #!/bin/bash
-# -- install dependences
+
 cd ${API_DIR}
 
-# Prepare by downloading dependencies
 mvn dependency:resolve
 mvn verify
 
-# Adding source, compile and package into a fat jar
 cd src
 mvn package
 
