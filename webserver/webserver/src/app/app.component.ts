@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Fiscalia } from './shared/fiscalia';
+
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,27 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'webserver';
+
+  showAll = true;
+  new = true;
+  edit = false;
+
+  newFiscalia(){
+    this.showAll = false;
+  }
+
+  editFiscalia(f:Fiscalia){
+    this.showAll = false;
+  }
+
+  show(){
+    this.showAll = true;
+  }
+
+
+
+ 
+
+  
+
 }
