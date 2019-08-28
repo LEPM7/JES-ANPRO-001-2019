@@ -43,7 +43,7 @@
       <app-fiscalias *ngIf="showAll"
         style="height: 100%;overflow-y: scroll; width: 100%; margin-top:50px"
       ></app-fiscalias>
-      <app-fiscalia *ngIf="!showAll"></app-fiscalia>
+      <app-fiscalia *ngIf="!showAll" (finish)="show()"></app-fiscalia>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="2" [rowspan]="4"> </mat-grid-tile>
     <mat-grid-tile [colspan]="2" [rowspan]="1">

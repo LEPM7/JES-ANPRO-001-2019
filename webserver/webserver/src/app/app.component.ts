@@ -22,7 +22,7 @@ export class AppComponent {
     this.showAll = false;
   }
 
-  save(){
+  show(){
     this.showAll = true;
   }
 
