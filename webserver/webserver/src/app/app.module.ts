@@ -12,8 +12,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { FiscaliasService } from './shared/fiscalias.service';
-import {MatListModule} from '@angular/material/list';
-import {MatCardModule} from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +32,9 @@ import {MatCardModule} from '@angular/material/card';
     MatIconModule,
     HttpClientModule,
     MatListModule,
-    MatCardModule
+    MatCardModule,
+    MatInputModule,
+    ReactiveFormsModule
   ],
   exports: [
     MatGridListModule,
@@ -37,7 +42,9 @@ import {MatCardModule} from '@angular/material/card';
     MatIconModule,
     HttpClientModule,
     MatListModule,
-    MatCardModule
+    MatCardModule,
+    MatInputModule,
+    ReactiveFormsModule
   ],
   providers: [FiscaliasService],
   bootstrap: [AppComponent]

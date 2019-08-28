@@ -1,1 +1,30 @@
-<p>fiscalia works!</p>
+<mat-card style="margin-left: 15px">
+    <form [formGroup]="fiscaliaForm">
+        <div style="width: 100%">
+            <button mat-icon-button>
+                <mat-icon>keyboard_backspace</mat-icon>
+            </button>
+            <button mat-icon-button style="margin: 10px 5px 10px auto">
+                <mat-icon>save</mat-icon>
+            </button>
+        </div>
+        <mat-form-field style="width:80%">
+            <input matInput placeholder="Nombre" [formControl]="nombre" type="text">
+        </mat-form-field>
+        <mat-form-field style="width:80%">
+            <input matInput placeholder="Descripcion" [formControl]="descripcion" type="text">
+        </mat-form-field>
+        <mat-form-field style="width:80%">
+            <input matInput placeholder="Direccion" [formControl]="direccion" type="text">
+        </mat-form-field>
+        <mat-form-field style="width:80%">
+            <input matInput placeholder="Telefono" [formControl]="telefono" type="number">
+        </mat-form-field>
+        <mat-form-field style="width:80%">
+            <input matInput placeholder="Latitud" [formControl]="latitud" type="number">
+        </mat-form-field>
+        <mat-form-field style="width:80%">
+            <input matInput placeholder="Longitud" [formControl]="longitud" type="number">
+        </mat-form-field>
+    </form>
+</mat-card>

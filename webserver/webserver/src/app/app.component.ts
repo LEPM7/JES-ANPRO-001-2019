@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Fiscalia } from './shared/fiscalia';
 
 
 
@@ -7,4 +8,28 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {}
+export class AppComponent {
+
+  showAll = true;
+  new = true;
+  edit = false;
+
+  newFiscalia(){
+    this.showAll = false;
+  }
+
+  editFiscalia(f:Fiscalia){
+    this.showAll = false;
+  }
+
+  save(){
+    this.showAll = true;
+  }
+
+
+
+ 
+
+  
+
+}
