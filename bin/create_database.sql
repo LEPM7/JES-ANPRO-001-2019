@@ -63,3 +63,20 @@ BEGIN
     DELETE from FISCALIA where id = @id;
 END
 GO
+
+--- Update
+CREATE PROCEDURE FiscaliaUpdate   @id int,
+                                  @Nombre varchar(150),
+                                  @Descripcion varchar(255),
+                                  @Telefono varchar(50),
+                                  @Direccion varchar(255),
+                                  @Latitud DECIMAL(9, 6),
+                                  @Longitud DECIMAL(9, 6)
+AS
+BEGIN
+    UPDATE FISCALIA SET descripcion = @Descripcion where id = @id;
+    UPDATE MOVIMIENTOS SET activa = 0 where fiscaliaId = @id;
+    INSERT INTO dbo.MOVIMIENTOS(telefono, direccion, latitud, longitud, activa, fiscaliaId)
+    values (@Telefono, @Direccion, @Latitud, @Longitud, 1, (select id from FISCALIA where FISCALIA.id = @id));
+END
+GO

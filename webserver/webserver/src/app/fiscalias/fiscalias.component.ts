@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Fiscalia } from '../shared/fiscalia';
 import { FiscaliasService } from '../shared/fiscalias.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -11,6 +11,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class FiscaliasComponent implements OnInit {
 
   fiscalias: Fiscalia[] = [];
+  @Output() selectedFiscalia = new EventEmitter();
 
   constructor(private fiscaliasService: FiscaliasService, private spinner: NgxSpinnerService) {}
 
@@ -26,7 +27,7 @@ export class FiscaliasComponent implements OnInit {
       this.spinner.hide();
     }, (e) => {
       console.trace(e);
-      this.spinner.hide()
+      this.spinner.hide();
     });
   }
 
@@ -43,5 +44,9 @@ export class FiscaliasComponent implements OnInit {
       console.trace(e);
       this.spinner.hide()
     });
+  }
+
+  editFiscalia(f){
+    this.selectedFiscalia.emit(f);
   }
 }

@@ -5,6 +5,7 @@ import static spark.Spark.post;
 import static spark.Spark.options;
 import static spark.Spark.before;
 import static spark.Spark.delete;
+import static spark.Spark.put;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -111,6 +112,24 @@ public class API {
                 response.type("application/json");
                 return true;
             } catch (SQLException e) {
+                response.status(HTTP_BAD_REQUEST);
+                response.type("application/json");
+                e.printStackTrace();
+                return false;
+            }
+        });
+
+        put("/fiscalias/:id", (request, response) -> {
+            System.out.println("PUT /fiscalias/:id");
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                FiscaliaPayload creation = mapper.readValue(request.body(), FiscaliaPayload.class);
+                new FakeORM().update(Integer.parseInt(request.params("id")), creation.nombre, creation.descripcion, creation.telefono, 
+                creation.direccion, creation.latitud, creation.longitud);
+                response.status(200);
+                response.type("application/json");
+                return true;
+            } catch (IOException | SQLException e) {
                 response.status(HTTP_BAD_REQUEST);
                 response.type("application/json");
                 e.printStackTrace();

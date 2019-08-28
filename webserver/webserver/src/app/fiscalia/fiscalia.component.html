@@ -9,7 +9,7 @@
             </button>
         </div>
         <mat-form-field style="width:80%">
-            <input matInput placeholder="Nombre" formControlName="nombre" type="text" required>
+            <input matInput placeholder="Nombre" formControlName="nombre" type="text" required [disabled]="isEdit" >
         </mat-form-field>
         <mat-form-field style="width:80%">
             <input matInput placeholder="Descripcion" formControlName="descripcion" type="text" required>
