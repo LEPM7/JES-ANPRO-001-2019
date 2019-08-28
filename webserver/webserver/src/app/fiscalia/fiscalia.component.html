@@ -1,0 +1,30 @@
+<mat-card style="margin-left: 15px">
+    <form [formGroup]="fiscaliaForm">
+        <div style="width: 100%; display: flex; justify-content: flex-start;margin-bottom: 20px;    ">
+            <button mat-icon-button (click)="back()">
+                <mat-icon>keyboard_backspace</mat-icon>
+            </button>
+            <button mat-icon-button style="margin-left: auto;" (click)="save()">
+                <mat-icon>save</mat-icon>
+            </button>
+        </div>
+        <mat-form-field style="width:80%">
+            <input matInput placeholder="Nombre" formControlName="nombre" type="text" required [disabled]="isEdit" >
+        </mat-form-field>
+        <mat-form-field style="width:80%">
+            <input matInput placeholder="Descripcion" formControlName="descripcion" type="text" required>
+        </mat-form-field>
+        <mat-form-field style="width:80%">
+            <input matInput placeholder="Direccion" formControlName="direccion" type="text" required>
+        </mat-form-field>
+        <mat-form-field style="width:80%">
+            <input matInput placeholder="Telefono" formControlName="telefono" type="number" required>
+        </mat-form-field>
+        <mat-form-field style="width:80%">
+            <input matInput placeholder="Latitud" formControlName="latitud" type="number" step="any" required>
+        </mat-form-field>
+        <mat-form-field style="width:80%">
+            <input matInput placeholder="Longitud" formControlName="longitud" type="number" step="any" required>
+        </mat-form-field>
+    </form>
+</mat-card>
