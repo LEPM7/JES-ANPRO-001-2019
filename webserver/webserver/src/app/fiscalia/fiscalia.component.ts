@@ -29,13 +29,14 @@ export class FiscaliaComponent implements OnInit{
       longitud: new FormControl(0.0, Validators.compose([Validators.required])),
     });
     if (this.fiscalia) {
+      console.log(this.fiscalia);
       this.isEdit = true;
       this.fiscaliaForm.get('nombre').setValue(this.fiscalia.nombre);
       this.fiscaliaForm.get('descripcion').setValue(this.fiscalia.descripcion);
       this.fiscaliaForm.get('direccion').setValue(this.fiscalia.direccion);
-      this.fiscaliaForm.get('telefono').setValue(this.fiscalia.telefono);
+      this.fiscaliaForm.get('telefono').setValue(Number(this.fiscalia.telefono));
       this.fiscaliaForm.get('latitud').setValue(this.fiscalia.latitud);
-      this.fiscaliaForm.get('telefono').setValue(this.fiscalia.longitud);
+      this.fiscaliaForm.get('longitud').setValue(this.fiscalia.longitud);
     }
   }
 
