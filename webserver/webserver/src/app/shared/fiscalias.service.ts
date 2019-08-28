@@ -19,8 +19,8 @@ export class FiscaliasService {
   };
 
   // POST
-  CreateFiscalia(data): Observable<Fiscalia> {
-    return this.http.post<Fiscalia>('http://localhost:4567/fiscalias', JSON.stringify(data), this.httpOptions)
+  CreateFiscalia(data): Observable<boolean> {
+    return this.http.post<boolean>('http://localhost:4567/fiscalias', JSON.stringify(data), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.errorHandl)
@@ -34,6 +34,15 @@ export class FiscaliasService {
       retry(1),
       catchError(this.errorHandl)
     );
+  }
+
+  // DELETE
+  DeleteFiscalia(id): Observable<boolean>{
+    return this.http.delete<boolean>(`http://localhost:4567/fiscalias/${id}`, this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.errorHandl)
+    )
   }
 
   // Error handling

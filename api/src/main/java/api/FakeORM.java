@@ -22,26 +22,6 @@ public class FakeORM {
   }
 
   // TODO: manejar transaccionalidad
-  // public void selection() {
-  // try {
-  // Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-  // Statement s1 = con.createStatement();
-  // ResultSet rs = s1.executeQuery("select *from FISCALIA;");
-  // if (rs != null) {
-  // while (rs.next()) {
-  // System.out.println("ID: " + rs.getInt("id"));
-  // System.out.println("Nombre: " + rs.getString("nombre"));
-  // System.out.println("Descripcion:" + rs.getString("descripcion"));
-  // System.out.println("Fecha Creacion:" + rs.getDate("fecha_creacion") + " " +
-  // rs.getTime("fecha_creacion"));
-  // }
-  // }
-  // // String result = new result[20];
-  // } catch (Exception e) {
-  // e.printStackTrace();
-  // }
-  // }
-
   public boolean insert(String nombre, String descripcion, String telefono, String direccion, Double latitud,
       Double longitud) throws SQLException {
     boolean result;
@@ -78,6 +58,14 @@ public class FakeORM {
       }
     }
     return fiscalias.keySet().stream().sorted().map((id) -> fiscalias.get(id)).collect(Collectors.toList());
+  }
+
+  public boolean delete(Integer id) throws SQLException {
+    boolean result;
+    CallableStatement pstmt = this.getConnection().prepareCall("{ call dbo.FiscaliaBorrar(?)}");
+    pstmt.setInt(1, id);
+    result = pstmt.execute();
+    return result;
   }
 
 }

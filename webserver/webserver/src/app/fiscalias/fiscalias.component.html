@@ -12,7 +12,9 @@
         ({{f.latitud}},{{f.longitud}})
         <mat-icon>near_me</mat-icon>
     </button>
-    <button mat-button>EDIT</button>
-    <button mat-button>DELETE</button>
+    <button mat-button>EDITAR</button>
+    <button mat-button (click)="deleteFiscalia(f.id)">
+      BORRAR
+    </button>
   </mat-card-actions>
 </mat-card>

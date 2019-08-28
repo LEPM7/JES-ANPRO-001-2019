@@ -54,3 +54,12 @@ FROM FISCALIA
 WHERE M.activa = 1;
 go
 
+--- Borrar
+CREATE PROCEDURE FiscaliaBorrar @id int
+AS
+BEGIN
+    SET NOCOUNT ON
+    DELETE FROM MOVIMIENTOS WHERE fiscaliaId = @id;
+    DELETE from FISCALIA where id = @id;
+END
+GO
