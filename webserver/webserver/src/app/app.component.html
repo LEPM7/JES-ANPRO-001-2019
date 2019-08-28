@@ -40,10 +40,10 @@
 <div>
   <mat-grid-list cols="4" rowHeight="110px">
     <mat-grid-tile [colspan]="2" [rowspan]="5">
-      <app-fiscalias *ngIf="showAll"
+      <app-fiscalias *ngIf="showAll" (selectedFiscalia)="editFiscalia($event)"
         style="height: 100%;overflow-y: scroll; width: 100%; margin-top:50px"
       ></app-fiscalias>
-      <app-fiscalia *ngIf="!showAll" (finish)="show()"></app-fiscalia>
+      <app-fiscalia *ngIf="!showAll" (finish)="show()" [fiscalia]="fiscalia"></app-fiscalia>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="2" [rowspan]="4"> </mat-grid-tile>
     <mat-grid-tile [colspan]="2" [rowspan]="1">

@@ -11,25 +11,19 @@ import { Fiscalia } from './shared/fiscalia';
 export class AppComponent {
 
   showAll = true;
-  new = true;
-  edit = false;
+  fiscalia:Fiscalia = null;
 
-  newFiscalia(){
+  newFiscalia() {
+    this.fiscalia = null;
     this.showAll = false;
   }
 
-  editFiscalia(f:Fiscalia){
+  editFiscalia(f:Fiscalia ) {
+    this.fiscalia = f;
     this.showAll = false;
   }
 
-  show(){
+  show() {
     this.showAll = true;
   }
-
-
-
- 
-
-  
-
 }

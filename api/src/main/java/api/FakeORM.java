@@ -68,4 +68,19 @@ public class FakeORM {
     return result;
   }
 
+  public boolean update(Integer id, String nombre, String descripcion, String telefono, String direccion, Double latitud,
+      Double longitud) throws SQLException {
+    boolean result;
+    CallableStatement pstmt = this.getConnection().prepareCall("{ call dbo.FiscaliaUpdate(?,?,?,?,?,?,?)}");
+    pstmt.setInt(1, id);
+    pstmt.setString(2, nombre);
+    pstmt.setString(3, descripcion);
+    pstmt.setString(4, telefono);
+    pstmt.setString(5, direccion);
+    pstmt.setDouble(6, latitud);
+    pstmt.setDouble(7, longitud);
+    result = pstmt.execute();
+    return result;
+  }
+
 }

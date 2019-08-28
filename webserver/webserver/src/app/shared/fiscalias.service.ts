@@ -42,7 +42,16 @@ export class FiscaliasService {
     .pipe(
       retry(1),
       catchError(this.errorHandl)
-    )
+    );
+  }
+
+  //UPDATE
+  UpdateFiscalia(id, data): Observable<boolean> {
+    return this.http.put<boolean>(`http://localhost:4567/fiscalias/${id}`, JSON.stringify(data), this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.errorHandl)
+    );
   }
 
   // Error handling
